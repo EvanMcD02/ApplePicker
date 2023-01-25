@@ -33,7 +33,7 @@ public class ApplePicker : MonoBehaviour
         {
             Destroy(tempGO);
         }
-            int basketIndex = basketList.Count - 1;
+            int basketIndex = basketList.Count - 1; //lose a basket
             GameObject basketGO = basketList[basketIndex];
             basketList.RemoveAt(basketIndex);
             Destroy(basketGO);
@@ -44,4 +44,9 @@ public class ApplePicker : MonoBehaviour
             }
 
         }
+    public void SpecialApple() //When you get a special yuri apple
+    {
+        int basketIndex = basketList.Count + 1;
+        Debug.Log("yuri apple");
+    }
     }

@@ -31,12 +31,26 @@ public class Basket : MonoBehaviour
     {
         //Find out what hit the basket
         GameObject collidedWith = coll.gameObject;
-        if (collidedWith.CompareTag("Apple"))
+        if (collidedWith.CompareTag("Poison")) //if its poison
         {
-            Destroy(collidedWith);
+            Destroy(collidedWith); //destroy the apple, run the apple missed function.
+            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+            apScript.AppleMissed();
+            //increase score
+        }
+        if (collidedWith.CompareTag("Apple")) //if its normal apple
+        {
+            Destroy(collidedWith); //increase score by 100
             scoreCounter.score += 100;
             HighScore.TRY_SET_HIGH_SCORE(scoreCounter.score);
             //increase score
+        }
+        if (collidedWith.CompareTag("Special")) //if its a special apple
+        {
+            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+            apScript.SpecialApple();
+            Destroy(collidedWith);
+            scoreCounter.score += 500;
         }
     }
 }

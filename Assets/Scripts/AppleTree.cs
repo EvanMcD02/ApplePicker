@@ -6,8 +6,8 @@ public class AppleTree : MonoBehaviour
 {
     [Header("Inscribed")]
     //Prefab for apples
-    public GameObject applePrefab;
-    public float speed = 1f;
+    public List<GameObject> applePrefabs;
+    public float speed = 5f;
     public float leftAndRightEdge = 10f;
     public float changeDirChance = 0.02f;
     public float appleDropDelay = 1f;
@@ -20,9 +20,23 @@ public class AppleTree : MonoBehaviour
 
     void DropApple()
     {
-        GameObject apple = Instantiate(applePrefab);
+        GameObject prefab = applePrefabs[Random.Range(0, applePrefabs.Count)];
+        GameObject apple = Instantiate(prefab);
         apple.transform.position = transform.position;
+        if (appleDropDelay > 0.18) //If the appledrop delay is greater than 0.28
+        {
+            appleDropDelay -= 0.01f; //Then Every time an apple falls, decrease the delay.
+        }
         Invoke("DropApple", appleDropDelay);
+
+        //If the tree speed positive increase by 0.25, otherwise decrease it by 0.25.
+        if (speed > 0) 
+        {
+            speed += 0.25f; 
+        } else {
+            speed -= 0.25f;
+        }
+
     }
 
     // Update is called once per frame

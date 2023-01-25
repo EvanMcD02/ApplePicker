@@ -11,8 +11,15 @@ public class Apple : MonoBehaviour
         if (transform.position.y < bottomY)
         {
             Destroy(this.gameObject);
-            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
-            apScript.AppleMissed();
+            if (gameObject.CompareTag("Poison")) //If a poison apple goes off the screen
+            {
+                //Do nothing            
+            }
+            else
+            {
+                ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+                apScript.AppleMissed();
+            }
         }
     }
 }

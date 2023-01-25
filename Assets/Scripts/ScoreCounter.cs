@@ -20,5 +20,10 @@ public class ScoreCounter : MonoBehaviour
     void Update()
     {
         uIText.text = score.ToString("#,0"); //This 0 is zero
+
+        if (score == 0)
+        {
+            
+        }
     }
 }
